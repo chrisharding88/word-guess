@@ -1,0 +1,43 @@
+header{
+    font-family: 'balloon-d', sans-serif;
+    font-style: normal;
+    font-weight: 800; 
+    border-bottom: 3px solid black;
+    text-align: center;
+    padding: 20px;
+    background-color: #eb6d07;
+    color: white;
+    font-size: 30px;
+    width: 100%;
+}
+
+body{
+    background: #18e002;
+}
+
+
+#board, 
+#wrongLetters{
+    border: 2px solid black; 
+    font-family: 'balloon-urw', sans-serif; 
+    font-weight: 300; 
+    font-style: normal;
+    background: white;
+    color: #18e002;
+}
+
+#board{
+    float: left;
+    padding: 20px;
+    width:20%;
+}
+
+#wrongLetters{
+    float:right;
+    padding: 50px;
+}
+
+.tracks{
+    margin-top: 31%;
+}
+
