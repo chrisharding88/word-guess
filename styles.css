@@ -2,13 +2,15 @@ header{
     font-family: 'balloon-d', sans-serif;
     font-style: normal;
     font-weight: 800; 
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #ffffff;
     text-align: center;
-    padding: 20px;
+    padding: 8px;
     background-color: #eb6d07;
     color: white;
     font-size: 30px;
     width: 100%;
+    margin-top:-8px;
+    margin-left: -8px;
 }
 
 body{
@@ -24,20 +26,35 @@ body{
     font-style: normal;
     background: white;
     color: #18e002;
+    font-size: 27px;
+
+}
+
+#guessWord{
+    text-align: center;
+    margin-top: 16%;
+}
+
+#blankSpaces{
+    font-size: 85px;
+    color: #ffffff;
 }
 
 #board{
     float: left;
     padding: 20px;
     width:20%;
+    margin-left:15%;
 }
 
 #wrongLetters{
     float:right;
     padding: 50px;
+    margin-right: 15%;
+    width: 20%;
 }
 
 .tracks{
-    margin-top: 31%;
+    margin-top: 5%;
 }
 
