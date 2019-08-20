@@ -4,10 +4,9 @@ var nickChar =["tommy", "doug", "arnold", "gerald", "spongebob","patrick", "rock
 var wins = 0;
 var guesses = 10;
 var lettersWrong = [];
-var lettersRight = [];
 var lettersGuessed =[];
 var blankSpace = [];
-var guessUser;
+var guessUser = [];
 var isCompleted = false;
 
 
@@ -41,10 +40,9 @@ document.onkeyup = function(){
     if (randomChar.indexOf(guessUser) > -1){
         for (var i = 0; i < randomChar.length; i++){
             if(randomChar[i] === guessUser) {
-                blankSpace[i] = lettersRight;
-                lettersRight.push(guessUser);
-                console.log(lettersRight);
-                document.getElementById("blankSpaces").innerHTML = lettersRight.join(" ");
+                blankSpace[i] = guessUser;
+                console.log(guessUser);
+                document.getElementById("blankSpaces").innerHTML = blankSpace.join(" ");
 
             }
         }
