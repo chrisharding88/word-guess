@@ -2,9 +2,11 @@ var nickChar =["tommy", "doug", "arnold", "gerald", "spongebob","patrick", "rock
 var wins = 0;
 var guesses = 10;
 var lettersWrong = [];
+var lettersRight = [];
 var lettersGuessed =[];
 var blankSpace = [];
 var guessUser;
+var isCompleted = false;
 
 
 
@@ -27,25 +29,47 @@ console.log(blankSpace);
 
 
 //User Guesses
-document.onkeyup = function(event){
-    guessUser = event.key.toLowerCase;
+document.onkeyup = function(){
 
-    /* if(guessUser.indexOf(lettersGuessed) === randomChar.length){
-        guessUser.push("blankSpaces");
+// Determines which key is pressed
+    guessUser = String.fromCharCode(event.keyCode).toLowerCase();
+    console.log(guessUser);
+
+//checks to see if the letter exists
+    if (randomChar.indexOf(guessUser) > -1){
+        for (var i = 0; i < randomChar.length; i++){
+            if(randomChar[i] === guessUser) {
+                blankSpace[i] === lettersRight;
+                lettersRight.push(guessUser);
+                console.log(lettersRight);
+                document.getElementById('lettersRight').innerHTML = lettersRight; 
+            }
+        }
     } else {
-        guessUser.push("lettersWrong");
-    } */
-   
+        lettersWrong.push(guessUser);
+        guesses--;
+        document.getElementById('guesses').innerHTML = guesses;
+        document.getElementById('lettersWrong').innerHTML = lettersWrong; 
 
+    }
 
 }
 
-document.getElementById('lettersWrong').innerHTML = lettersWrong; 
 
-console.log(guessUser);
 
 
 
 };
 
 startGame(); // Calls out the function
+
+
+/* function endGame(){
+
+if (guesses === -1){
+    alert ("GAME OVER");
+}
+
+}
+
+endGame(); */
