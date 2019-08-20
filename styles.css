@@ -15,6 +15,7 @@ header{
 
 body{
     background: #18e002;
+    min-height: calc(200vh - 20px);
 }
 
 
@@ -30,14 +31,28 @@ body{
 
 }
 
+#pic {
+    color: #ffffff;
+    border: 2px solid black;
+    width: 300px;
+    height: 300px;
+    font-size: 60px;
+    display:block;
+    margin-left: 41%;
+    background: #eb6d07;
+}
+
 #guessWord{
     text-align: center;
-    margin-top: 16%;
+    margin-top: 1%;
 }
 
 #blankSpaces{
-    font-size: 85px;
+    font-size: 95px;
     color: #ffffff;
+    font-family: 'balloon-d', sans-serif;
+    font-style: normal;
+    font-weight: 800; 
 }
 
 #board{
