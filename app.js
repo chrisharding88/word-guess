@@ -1,3 +1,5 @@
+
+// Global Variables
 var nickChar =["tommy", "doug", "arnold", "gerald", "spongebob","patrick", "rocko", "heffer", "filbert", "helga", "angelica","eliza"];
 var wins = 0;
 var guesses = 10;
@@ -39,14 +41,15 @@ document.onkeyup = function(){
     if (randomChar.indexOf(guessUser) > -1){
         for (var i = 0; i < randomChar.length; i++){
             if(randomChar[i] === guessUser) {
-                blankSpace[i] === lettersRight;
+                blankSpace[i] = lettersRight;
                 lettersRight.push(guessUser);
                 console.log(lettersRight);
-                document.getElementById('lettersRight').innerHTML = lettersRight; 
+                document.getElementById("blankSpaces").innerHTML = lettersRight.join(" ");
+
             }
         }
     } else {
-        lettersWrong.push(guessUser);
+        lettersWrong.push(guessUser); //when 
         guesses--;
         document.getElementById('guesses').innerHTML = guesses;
         document.getElementById('lettersWrong').innerHTML = lettersWrong; 
