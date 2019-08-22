@@ -29,6 +29,7 @@ var eliza = document.createElement('img');
 function reset(){
     var randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
 
+    isCompleted = false;
     correctLetters = 0;
     guesses = 10;
     lettersWrong = [];
@@ -62,7 +63,7 @@ function pics(){
         tommy.src = "assets/images/tommy.jpg";
         tommy.style.width = "300px";
         tommy.style.height = "300px";
-        document.getElementById("pic").innerHTML = tommy;
+        document.getElementById('pic').innerHTML = tommy;
     } else if (randomChar === nickChar[1]){
         doug.src = "assets/images/doug.jpg";
         doug.style.width = "300px";
@@ -136,6 +137,7 @@ function pics(){
 function winsLose(){
     // If the length of the string is equal to the amount of correct letters that fill up the blankspace
     if (randomChar.length === correctLetters){
+        isCompleted = true;
         alert("You win!");
         pics();
         //adds up the wins after the user completes all the letters in the blankspace
@@ -143,6 +145,7 @@ function winsLose(){
         //prints out the number of wins in the HTML
         document.getElementById("wins").innerHTML = winsCount;
     } else if (guesses < 0) {
+        isCompleted = false;
         alert ("You Lose!");
     }
 }
@@ -161,6 +164,7 @@ document.onkeyup = function(){
 //checks to see if the letter exists
     if (randomChar.indexOf(guessUser) > -1){
         for (var i = 0; i < randomChar.length; i++){
+            //when the user guess numbers right
             if(randomChar[i] === guessUser) {
                 blankSpace[i] = guessUser;
                 lettersRight.push(guessUser);
