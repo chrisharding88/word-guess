@@ -63,62 +63,62 @@ function pics(){
         tommy.src = "assets/images/tommy.jpg";
         tommy.style.width = "300px";
         tommy.style.height = "300px";
-        document.getElementById('pic').innerHTML = tommy;
+        document.getElementById('pic').appendChild(tommy);
     } else if (randomChar === nickChar[1]){
         doug.src = "assets/images/doug.jpg";
         doug.style.width = "300px";
         doug.style.height = "300px";
-        document.getElementById("pic").innerHTML = doug;
+        document.getElementById("pic").appendChild(doug);
     }else if (randomChar === nickChar[2]){
         arnold.src = "assets/images/arnold.jpg";
         arnold.style.width = "300px";
         arnold.style.height = "300px";
-        document.getElementById("pic").innerHTML = arnold;
+        document.getElementById("pic").appendChild(arnold);
     }else if (randomChar === nickChar[3]){
         gerald.src = "assets/images/gerald.jpg";
         gerald.style.width = "300px";
         gerald.style.height = "300px";
-        document.getElementById("pic").innerHTML = gerald;
+        document.getElementById("pic").appendChild(gerald);
     }else if (randomChar === nickChar[4]){
         spongebob.src = "assets/images/spongebob.jpg";
         spongebob.style.width = "300px";
         spongebob.style.height = "300px";
-        document.getElementById("pic").innerHTML = spongebob;
+        document.getElementById("pic").appendChild(spongebob);
     }else if (randomChar === nickChar[5]){
         patrick.src = "assets/images/patrick.jpg";
         patrick.style.width = "300px";
         patrick.style.height = "300px";
-        document.getElementById("pic").innerHTML = patrick;
+        document.getElementById("pic").appendChild(patrick);
     }else if (randomChar === nickChar[6]){
         rocko.src = "assets/images/rocko.jpg";
         rocko.style.width = "300px";
         rocko.style.height = "300px";
-        document.getElementById("pic").innerHTML = rocko;
+        document.getElementById("pic").appendChild(rocko);
     }else if (randomChar === nickChar[7]){
         heffer.src = "assets/images/heffer.jpg";
         heffer.style.width = "300px";
         heffer.style.height = "300px";
-        document.getElementById("pic").innerHTML = heffer;
+        document.getElementById("pic").appendChild(heffer);
     }else if (randomChar === nickChar[8]){
         filbert.src = "assets/images/filbert.jpg";
         filbert.style.width = "300px";
         filbert.style.height = "300px";
-        document.getElementById("pic").innerHTML = filbert;
+        document.getElementById("pic").appendChild(filbert);
     }else if (randomChar === nickChar[9]){
         helga.src = "assets/images/helga.jpg";
         helga.style.width = "300px";
         helga.style.height = "300px";
-        document.getElementById("pic").innerHTML = helga;
+        document.getElementById("pic").appendChild(helga);
     }else if (randomChar === nickChar[10]){
         angelica.src = "assets/images/angelica.jpg";
         angelica.style.width = "300px";
         angelica.style.height = "300px";
-        document.getElementById("pic").innerHTML = angelica;
+        document.getElementById("pic").appendChild(angelica) ;
     }else if (randomChar === nickChar[11]){
         eliza.src = "assets/images/eliza.jpg";
         eliza.style.width = "300px";
         eliza.style.height = "300px";
-        document.getElementById("pic").innerHTML = eliza;
+        document.getElementById("pic").appendChild(eliza);
     }
 
 
