@@ -15,7 +15,6 @@ header{
 
 body{
     background: #18e002;
-    min-height: calc(200vh - 20px);
 }
 
 
@@ -70,6 +69,6 @@ body{
 }
 
 .tracks{
-    margin-top: 5%;
+    margin-top: 0.5%;
 }
 

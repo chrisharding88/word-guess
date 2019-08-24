@@ -9,6 +9,8 @@ var blankSpace = [];
 var guessUser = [];
 var isCompleted = false;
 var winsCount = 0;
+var message = document.getElementById('message')
+var game = document.getElementsByClassName('game');
 
 var tommy = document.createElement('img');
 var doug = document.createElement('img');
@@ -24,16 +26,25 @@ var angelica = document.createElement('img');
 var eliza = document.createElement('img');
 
 
+function keyStart(){
 
+ game.style.display ="none";   
+document.onkeyup = function(){
+
+    guessUser = String.fromCharCode(event.keyCode).toLowerCase();
+
+}
+
+}
 
 function reset(){
     var randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
-
     isCompleted = false;
     correctLetters = 0;
     guesses = 10;
     lettersWrong = [];
     lettersRight = [];
+    blankSpace = [];
 
 }
 
@@ -41,9 +52,10 @@ function reset(){
 
 function startGame (){
 
-//Picks the random Nick characters from the array
+message.style.display ="none";
+//Sets the random Nick character from the array
 randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
-//Prints out the random word on the console
+//Prints out the random Nick Character on the console
 console.log(randomChar);
 
 // Sets a loop for randomChar 
@@ -121,14 +133,7 @@ function pics(){
         document.getElementById("pic").appendChild(eliza);
     }
 
-
-
 }
-
-
-
-
-
 
 
 
@@ -136,7 +141,7 @@ function pics(){
 //Determines if the user win or lose
 function winsLose(){
     // If the length of the string is equal to the amount of correct letters that fill up the blankspace
-    if (randomChar.length === correctLetters){
+    if (blankSpace.length === correctLetters){
         isCompleted = true;
         alert("You win!");
         pics();
@@ -144,6 +149,7 @@ function winsLose(){
         winsCount++;
         //prints out the number of wins in the HTML
         document.getElementById("wins").innerHTML = winsCount;
+        message.style.display ="block";
     } else if (guesses < 0) {
         isCompleted = false;
         alert ("You Lose!");
@@ -185,6 +191,7 @@ document.onkeyup = function(){
 
     }
 
+
 }
 
 
@@ -201,6 +208,8 @@ document.onkeyup = function(){
 
 
    
+
+    
 };
 
 startGame(); // Calls out the function
