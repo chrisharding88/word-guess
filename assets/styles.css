@@ -54,6 +54,10 @@ body{
     font-weight: 800; 
 }
 
+#instructions{
+    text-align: center;
+}
+
 #board{
     float: left;
     padding: 20px;

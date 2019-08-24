@@ -1,6 +1,6 @@
 
 // Global Variables
-var nickChar =["tommy", "doug", "arnold", "gerald", "spongebob","patrick", "rocko", "heffer", "filbert", "helga", "angelica","eliza"];
+var nickChar = ["tommy", "doug", "arnold", "gerald", "spongebob", "patrick", "rocko", "heffer", "filbert", "helga", "angelica", "eliza"];
 var guesses = 10;
 var lettersWrong = [];
 var lettersRight = [];
@@ -11,6 +11,7 @@ var isCompleted = false;
 var winsCount = 0;
 var message = document.getElementById('message')
 var game = document.getElementsByClassName('game');
+var randomChar;
 
 var tommy = document.createElement('img');
 var doug = document.createElement('img');
@@ -26,47 +27,6 @@ var angelica = document.createElement('img');
 var eliza = document.createElement('img');
 
 
-function keyStart(){
-
- game.style.display ="none";   
-document.onkeyup = function(){
-
-    guessUser = String.fromCharCode(event.keyCode).toLowerCase();
-
-}
-
-}
-
-function reset(){
-    var randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
-    isCompleted = false;
-    correctLetters = 0;
-    guesses = 10;
-    lettersWrong = [];
-    lettersRight = [];
-    blankSpace = [];
-
-}
-
-
-
-function startGame (){
-
-message.style.display ="none";
-//Sets the random Nick character from the array
-randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
-//Prints out the random Nick Character on the console
-console.log(randomChar);
-
-// Sets a loop for randomChar 
-for(var i = 0; i < randomChar.length; i++){
-//The variable i plugs into the blankSpace array so it can show the length of random word
-    blankSpace[i] = ('_');
-}
-
-//Prints out the random blank spaces on HTML
-document.getElementById("blankSpaces").innerHTML = blankSpace.join(" ");
-console.log(blankSpace);
 
 
 
@@ -137,79 +97,116 @@ function pics(){
 
 
 
+function startGame() {
+    message.style.display = "none";
+    //Sets the random Nick character from the array
+    randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
+    //Prints out the random Nick Character on the console
+    console.log(randomChar);
 
-//Determines if the user win or lose
-function winsLose(){
-    // If the length of the string is equal to the amount of correct letters that fill up the blankspace
-    if (blankSpace.length === correctLetters){
-        isCompleted = true;
-        alert("You win!");
-        pics();
-        //adds up the wins after the user completes all the letters in the blankspace
-        winsCount++;
-        //prints out the number of wins in the HTML
-        document.getElementById("wins").innerHTML = winsCount;
-        message.style.display ="block";
-    } else if (guesses < 0) {
-        isCompleted = false;
-        alert ("You Lose!");
-    }
-}
-
-//User Guesses
-document.onkeyup = function(){
-
-
-// Determines which key is pressed
-    guessUser = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(guessUser);
-
-
-
-
-//checks to see if the letter exists
-    if (randomChar.indexOf(guessUser) > -1){
-        for (var i = 0; i < randomChar.length; i++){
-            //when the user guess numbers right
-            if(randomChar[i] === guessUser) {
-                blankSpace[i] = guessUser;
-                lettersRight.push(guessUser);
-                correctLetters++;
-                winsLose();
-                console.log(guessUser);
-                document.getElementById("blankSpaces").innerHTML = blankSpace.join(" ");
-            }
-        }
-    } else {
-        //when the user gets the wrong letter, it is pushed into the "Wrong Letters" section.
-        lettersWrong.push(guessUser); 
-        // When the user gets letters wrong, it subtracts the amount of guesses.
-        guesses--;
-        winsLose();
-        document.getElementById('guesses').innerHTML = guesses;
-        document.getElementById('lettersWrong').innerHTML = lettersWrong.join(" "); 
-
+    // Sets a loop for randomChar 
+    for (var i = 0; i < randomChar.length; i++) {
+        //The variable i plugs into the blankSpace array so it can show the length of random word
+        blankSpace[i] = ('_');
     }
 
+    //Prints out the random blank spaces on HTML
+    document.getElementById("blankSpaces").textContent = blankSpace.join(" ");
+    console.log(blankSpace);
 
-}
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-   
 
     
-};
 
-startGame(); // Calls out the function
+
+
+
+
+    //User Guesses
+    document.onkeyup = function () {
+        // Determines which key is pressed
+        guessUser = event.key;
+        console.log(guessUser);
+
+
+        //Determines if the user win or lose
+        function winsLose() {
+            // If the length of the string is equal to the amount of correct letters that fill up the blankspace
+            if (blankSpace.length === correctLetters) {
+                // boolean to prove that the blankspace is completed
+                isCompleted = true; 
+                //adds up the wins after the user completes all the letters in the blankspace
+                winsCount++;
+                document.getElementById('pic').innerHTML = "";
+                pics();
+                //prints out the number of wins in the HTML
+                document.getElementById("wins").innerHTML = winsCount;
+                message.style.display = "block";
+                lettersWrong = [];
+                lettersRight = [];
+                blankSpace = [];
+                correctLetters = 0;
+                guesses = 10;
+                alert("You win!");
+                startGame();
+                // condition if the user reached to no guesses
+            } else if (guesses <= 0) {
+                //boolean to prove that the blankspace is incomplete
+                isCompleted = false;
+                winsCount = 0;
+                document.getElementById("wins").innerHTML = winsCount;
+             // Box pops up to tell the user "You Lose"
+                alert ("You Lose!");
+                document.getElementById('pic').innerHTML = "";
+                lettersWrong = [];
+                lettersRight = [];
+                blankSpace = [];
+                correctLetters = 0;
+                guesses = 10;
+                message.style.display = "block";
+                startGame();
+
+            }
+        }
+        //if the user wins then display the picture of the character. When the game is reset remove the picture
+        // from the DOM
+
+        // if (isCompleted === true) {
+        //     pics();
+        // } else {
+        //     return false;
+        // }
+
+
+        
+       //checks to see if the letter exists
+        if (randomChar.indexOf(guessUser) > -1){
+            for (var i = 0; i < randomChar.length; i++){
+                //when the user guess numbers right
+                if(randomChar[i] === guessUser) {
+                    blankSpace[i] = guessUser;
+                    lettersRight.push(guessUser);
+                    correctLetters++;
+                    winsLose();
+                    console.log(guessUser);
+                    document.getElementById("blankSpaces").innerHTML = blankSpace.join(" ");
+                }
+            }
+        } else {
+            //when the user gets the wrong letter, it is pushed into the "Wrong Letters" section.
+            lettersWrong.push(guessUser); 
+            // When the user gets letters wrong, it subtracts the amount of guesses.
+            guesses--;
+            winsLose();
+            document.getElementById('guesses').innerHTML = guesses;
+            document.getElementById('lettersWrong').innerHTML = lettersWrong.join(" "); 
+    
+        }
+    
+    
+    }
+    
+    
+
+    }   
+
+onload = startGame();
