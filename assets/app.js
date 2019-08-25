@@ -140,6 +140,14 @@ function startGame() {
         console.log(guessUser);
 
 
+        // I should set a function that checks the lettter to see if it is already guesssed
+        // If the user pushes the key that's already guessed, then it's not going to go anything.
+        //
+
+
+
+
+
         //Determines if the user win or lose
         function winsLose() {
             // If the length of the string is equal to the amount of correct letters that fill up the blankspace
@@ -211,7 +219,9 @@ function startGame() {
                     lettersRight.push(guessUser);
                     //added the number of correct letters
                     correctLetters++;
+                    //play the correct sound
                     correct.play();
+                    // calls out the winLose Function
                     winsLose();
                     console.log(guessUser);
                     document.getElementById("blankSpaces").innerHTML = blankSpace.join(" ");
@@ -222,9 +232,13 @@ function startGame() {
             lettersWrong.push(guessUser); 
             // When the user gets letters wrong, it subtracts the amount of guesses.
             guesses--;
+            //plays the wrong sound
             wrong.play();
+            // calls out the winLose Function
             winsLose();
+            //displays the number of guess
             document.getElementById('guesses').innerHTML = guesses;
+            //displays the letters wrong
             document.getElementById('lettersWrong').innerHTML = lettersWrong.join(" "); 
     
         }
@@ -236,4 +250,4 @@ function startGame() {
 
     }   
 
-onload = startGame();
+onload = startGame(); //calls the startGame function, also allows to reload the screen
