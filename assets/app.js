@@ -9,10 +9,12 @@ var blankSpace = [];
 var guessUser = [];
 var isCompleted = false;
 var winsCount = 0;
-var message = document.getElementById('message')
+var instructions = document.getElementById('instructions');
 var game = document.getElementsByClassName('game');
 var randomChar;
 
+
+// global image variables
 var tommy = document.createElement('img');
 var doug = document.createElement('img');
 var arnold = document.createElement('img');
@@ -27,9 +29,17 @@ var angelica = document.createElement('img');
 var eliza = document.createElement('img');
 
 
+//global audio variables
+var correct = document.createElement('audio');
+var wrong = document.createElement('audio');
+ correct = new Audio ('assets/sounds/correctAnswer.mp3');
+ wrong = new Audio('assets/sounds/wrongAnswer.mp3');
 
 
 
+
+
+// Set up function to display the pictures
 function pics(){
     if (randomChar === nickChar[0]){
         tommy.src = "assets/images/tommy.jpg";
@@ -98,7 +108,6 @@ function pics(){
 
 
 function startGame() {
-    message.style.display = "none";
     //Sets the random Nick character from the array
     randomChar = nickChar[Math.floor(Math.random() * nickChar.length)];
     //Prints out the random Nick Character on the console
@@ -123,6 +132,9 @@ function startGame() {
 
     //User Guesses
     document.onkeyup = function () {
+        // instructions disappear after the key is pressed
+        instructions.style.display = "none";
+
         // Determines which key is pressed
         guessUser = event.key;
         console.log(guessUser);
@@ -133,48 +145,58 @@ function startGame() {
             // If the length of the string is equal to the amount of correct letters that fill up the blankspace
             if (blankSpace.length === correctLetters) {
                 // boolean to prove that the blankspace is completed
-                isCompleted = true; 
+                isCompleted = true;
+                
                 //adds up the wins after the user completes all the letters in the blankspace
                 winsCount++;
                 document.getElementById('pic').innerHTML = "";
                 pics();
-                //prints out the number of wins in the HTML
+                //prints out the updates for the number of wins in the HTML
                 document.getElementById("wins").innerHTML = winsCount;
-                message.style.display = "block";
+
+                //reset variables
                 lettersWrong = [];
                 lettersRight = [];
                 blankSpace = [];
                 correctLetters = 0;
                 guesses = 10;
-                alert("You win!");
+
+                //box displays you win and lets user to press any key to continue
+                alert("You win! Press Any Key To Continue");
+
+                //calls out the startGame function
                 startGame();
+
                 // condition if the user reached to no guesses
             } else if (guesses <= 0) {
                 //boolean to prove that the blankspace is incomplete
                 isCompleted = false;
+
+                //sets the wins count to zero.
                 winsCount = 0;
-                document.getElementById("wins").innerHTML = winsCount;
+
              // Box pops up to tell the user "You Lose"
-                alert ("You Lose!");
+                alert ("You Lose! Press Any Key To Continue");
+
+                // sets back to the orange box
                 document.getElementById('pic').innerHTML = "";
+
+                //reset variables
                 lettersWrong = [];
                 lettersRight = [];
                 blankSpace = [];
                 correctLetters = 0;
                 guesses = 10;
-                message.style.display = "block";
+
+               //prints out the wins count to zero after the user loses in order to restart the wins count
+                document.getElementById("wins").innerHTML = winsCount;
+
+                // calls out the function
                 startGame();
 
             }
         }
-        //if the user wins then display the picture of the character. When the game is reset remove the picture
-        // from the DOM
-
-        // if (isCompleted === true) {
-        //     pics();
-        // } else {
-        //     return false;
-        // }
+     
 
 
         
@@ -183,9 +205,13 @@ function startGame() {
             for (var i = 0; i < randomChar.length; i++){
                 //when the user guess numbers right
                 if(randomChar[i] === guessUser) {
+                    //fills up the blank space after the user pushes the correct letter
                     blankSpace[i] = guessUser;
+                    //pushes to the lettersRight array
                     lettersRight.push(guessUser);
+                    //added the number of correct letters
                     correctLetters++;
+                    correct.play();
                     winsLose();
                     console.log(guessUser);
                     document.getElementById("blankSpaces").innerHTML = blankSpace.join(" ");
@@ -196,6 +222,7 @@ function startGame() {
             lettersWrong.push(guessUser); 
             // When the user gets letters wrong, it subtracts the amount of guesses.
             guesses--;
+            wrong.play();
             winsLose();
             document.getElementById('guesses').innerHTML = guesses;
             document.getElementById('lettersWrong').innerHTML = lettersWrong.join(" "); 

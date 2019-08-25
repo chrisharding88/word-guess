@@ -56,6 +56,12 @@ body{
 
 #instructions{
     text-align: center;
+    color: #ffffff;
+    font-family: 'balloon-d', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 45px;
+    margin-top: -3%;
 }
 
 #board{
